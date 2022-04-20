@@ -1,7 +1,12 @@
 package com.qa.intro_project.data.entity;
 
+import java.util.Date;
+
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Past;
+import javax.validation.constraints.PastOrPresent;
 import javax.validation.constraints.Size;
 
 // Spring has a 'spring-boot-starter-validation' module which transitively includes
@@ -30,6 +35,21 @@ public class User {
 	@NotBlank
 	@Size(min = 2, max = 16, message = "Username must have at least 2 characters, but no more than 16")
 	private String username;
+	
+	@NotNull
+	@NotBlank
+	@Email
+	private String email;
+	
+	@NotNull
+	@NotBlank
+	@Past
+	private Date dob;
+	
+	@NotNull
+	@NotBlank
+	@PastOrPresent
+	private Date dateCreated;
 	
 	// TODO: Add 3 new fields to the User class, with appropriate validation annotations applied to each
 	
@@ -61,7 +81,7 @@ public class User {
 
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", username=" + username + "]";
+		return "User [id=" + id + ", username=" + username + ", email=" + email + ", date of birth=" + dob + ", date created=" + dateCreated + "]";
 	}
 	
 }
